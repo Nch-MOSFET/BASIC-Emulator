@@ -12,9 +12,9 @@
   - ATMega328pまたはATMega2560
   - もしかしたらESP-WROOM-32
 - モニタ
-  - [ATMega328pバージョン](https://www.amazon.co.jp/dp/B07B2HDTV4/)
-  - [ATMega2560バージョン](https://www.amazon.co.jp/dp/B09PKR2JYG/)
-- キーボード
+  - [ATMega328pバージョン](https://www.amazon.co.jp/dp/B07B2HDTV4/) 2.8"240x320
+  - [ATMega2560バージョン](https://www.amazon.co.jp/dp/B09PKR2JYG/) 3.5"480x320
+  - キーボード
   - タクトスイッチとシフトレジスタを使用し最小限必要なキーqを装備
   - USB対応させる気はない（）
 - インターフェース
