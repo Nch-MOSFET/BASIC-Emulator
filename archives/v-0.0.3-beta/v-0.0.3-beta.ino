@@ -28,13 +28,21 @@ void loop() {
 void ReturnTXT(uint8_t datSize) {
   for (uint8_t i = 0; i < datSize; i++) {
     Serial.print(Buffer[i], HEX);
-  }
-  for (uint8_t i = 0; i < datSize; i++) {
-    Serial.write(Buffer[i]);
+    Serial.print(" ");
   }
 }
 
 void runFunc() {
+  if(Buffer[0] == 0x30 || Buffer[0] == 0x31){
+    if (Buffer[0] == 0x30) {
+      //Serial.println(" LOW is running");
+      digitalWrite(13,  LOW);
+    } else if(Buffer[0] == 0x31){
+      //Serial.println("HIGH is running");
+      digitalWrite(13, HIGH);
+    }
+  }
+  /*
   if (Buffer[0] == 0x4C && Buffer[1] == 0x45 && Buffer[2] == 0x44 && Buffer[3] == 0x20) {
     //LED を受信したときの動作:
     if (Buffer[4] == 0x30) {
@@ -50,6 +58,7 @@ void runFunc() {
       Buffer[i] = 0;
     }
   }
+   */
 }
 
 void readSerials() {
@@ -60,6 +69,6 @@ void readSerials() {
     workingCOL++;
   }
   ReturnTXT(workingCOL);
-  Serial.println(workingCOL);
+  //Serial.println(workingCOL);
   runFunc();
 }
