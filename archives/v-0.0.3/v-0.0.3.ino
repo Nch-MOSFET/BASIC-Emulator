@@ -57,7 +57,7 @@ void runFunc() {
 void readSerials() {
   workingCOL = 0;
   while (Serial.available() > 0) {
-    delay(1);  //何故かこれを無くすと挙動が崩れる:
+    delay(4);  //何故かこれを無くすと挙動が崩れる:
     uint8_t dat = Serial.read();
     Buffer[workingCOL] = dat;
     workingCOL++;
