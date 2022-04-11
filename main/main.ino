@@ -1,6 +1,6 @@
 #define COLs 32  //行当たり最大文字数:
 
-const char BootMenu[] = {"BASIC Emulator on Arduino Ver-0.1.0"};
+const char BootMenu[] = {"BASIC Emulator on Arduino Ver-0.1.1-beta"};
 
 uint8_t workingCOL = 0;
 
@@ -27,13 +27,14 @@ void loop() {
 
 void ReturnTXT(uint8_t datSize) {
   for (uint8_t i = 0; i < datSize; i++) {
-    Serial.write(Buffer[i]);
+    Serial.print(Buffer[i], HEX);
+    Serial.print(" ");
   }
 }
 
 void runFunc() {
+  //LED関数ここから:
   if (Buffer[0] == 0x4C && Buffer[1] == 0x45 && Buffer[2] == 0x44 && Buffer[3] == 0x20 && Buffer[5] == 0x0A) {
-    //LED を受信したときの動作:
     if (Buffer[4] == 0x30) {
       digitalWrite(13,  LOW);
     } else if(Buffer[4] == 0x31){
@@ -41,6 +42,12 @@ void runFunc() {
     } else {
       Serial.println("Syntax Error...");
     }
+  }
+  //LED関数ここまで:
+
+  //WAIT関数ここから:
+  if (Buffer[0] == 0x57 && Buffer[1] == 0x41 && Buffer[2] == 0x49 && Buffer[3] == 0x54 && Buffer[4] == 0x20){
+    //作業中 in here:
   }
   else {
     Serial.println("Syntax Error...");
