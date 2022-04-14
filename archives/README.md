@@ -1,6 +1,6 @@
 # 更新状況
 
-開発中バージョン：v-0.1.2-beta [@main.ino](../../../blob/main/main/main.ino)
+開発中バージョン：v-0.1.2-beta [@main.ino](../../../blob/main/main/main.ino)  
 開発内容　　　　：`WAIT` 関数を実装中
 
 # 命名規則
