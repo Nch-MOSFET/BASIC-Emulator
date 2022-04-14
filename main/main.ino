@@ -73,7 +73,6 @@ void runFunc() {
     Serial.println(">> Syntax Error...");
   }
   
-  //↓のやつ本当ならセーブ後が望ましい:
   for(uint8_t i = 0; i < COLs; i++){
     Buffer[i] = 0;
   }
