@@ -2,7 +2,7 @@
 
 #define COLs 32  //行当たり最大文字数:
 
-const char BootMenu[] = {"BASIC Emulator on Arduino Ver-0.1.2-beta"};
+const char BootMenu[] = {"BASIC Emulator on Arduino Ver-0.1.2"};
 
 uint8_t workingCOL = 0;
 
