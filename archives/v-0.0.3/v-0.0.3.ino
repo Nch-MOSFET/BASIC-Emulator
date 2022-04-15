@@ -8,7 +8,7 @@ uint8_t Buffer[COLs];
 
 void setup() {
   Serial.begin(115200);
-  for (uint8_t i = 0; i < sizeof(BootMenu); i++) {
+  for (uint8_t i = 0; i < sizeof(BootMenu) - 1; i++) {
     Serial.print(BootMenu[i]);
   }
   Serial.println();
