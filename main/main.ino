@@ -2,7 +2,7 @@
 
 #define COLs 32  //行当たり最大文字数:
 
-const char BootMenu[] = {"BASIC Emulator on Arduino Ver-0.1.2"};
+const char BootMenu[] = {"BASIC Emulator on Arduino Ver-0.1.2-beta"};
 
 uint8_t workingCOL = 0;
 
@@ -69,10 +69,19 @@ void runFunc() {
     Serial.println();
   }
   //PRINT関数ここまで:
+
+  //WAIT関数ここから:
+  else if (Buffer[0] == 0x57 && Buffer[1] == 0x41 && Buffer[2] == 0x49 && Buffer[3] == 0x54 && Buffer[4] == 0x20) {
+    for (uint8_t i = 5; i < workingCOL - 1; i++){
+      delay((Buffer[i] - 0x30) * pow(10, workingCOL - i - 2));
+    }
+    Serial.println(">> Done");
+  }
+  //WAIT関数ここまで:
   else {
     Serial.println(">> Syntax Error...");
   }
-  
+esc:  //ループ脱出用:
   for(uint8_t i = 0; i < COLs; i++){
     Buffer[i] = 0;
   }
