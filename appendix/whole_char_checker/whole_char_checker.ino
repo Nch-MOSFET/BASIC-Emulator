@@ -1,13 +1,17 @@
-#define BaudRate 115200
+#define BaudRate 9600
 
 void setup() {
   Serial.begin(BaudRate);
 
+  delay(250);
+
   Serial.println("Start...");
+
+  delay(250);
 
   Serial.println("number,data,isAlpha,isAlphaNumeric,isAscii,isControl,isDigit,isGraph,isHexadecimalDigit,isLowerCase,isUpperCase,isPrintable,isPunct,isSpace,isWhitespace");
 
-  for (uint16_t i = 0; i < 256; i++) {
+  for (uint8_t i = 0; i < 128; i++) {
     Serial.print(i);                       Serial.print(",");
     Serial.write(i);                       Serial.print(",");
     Serial.print(isAlpha(i));              Serial.print(",");
