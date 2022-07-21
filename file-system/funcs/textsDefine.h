@@ -48,10 +48,10 @@
 #define _Equal        55  // =
 #define _GreaterThan  56  // >
 #define _Question     57  // ?
-#define _At           58  // @
-#define _Caret        59  // ^
-#define _UnderBar     60  // _
-#define _Apostrophe   61  // '
-#define _Tilde        62  // ~
+#define _Caret        58  // ^
+#define _UnderBar     59  // _
+#define _Apostrophe   60  // '
+#define _Tilde        61  // ~
 
+#define _Blank
 #define _Enter        63
