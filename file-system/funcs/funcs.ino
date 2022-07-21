@@ -1,51 +1,43 @@
 #include "./textsDefine.h"
 
-uint8_t decodeArray[64] = {48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 32, 33, 34, 35, 36, 37, 38, 124, 40, 41, 42, 43, 44, 45, 46, 47, 58, 59, 60, 61, 62, 63, 64, 94, 95, 39, 126, 10};
-
-uint8_t rawArray[1365];
-uint8_t expArray[1024];
-
-uint8_t expanded[4];    // 展開後のデータ保管用:
-uint8_t compressed[3];  // 圧縮後のデータ保管用:
-
 uint8_t dataEncoder(uint8_t dat) {
-       if(48 <= dat || dat <= 57 ) {  // 0 ~ 9
+    if(48 <= dat || dat <= 57 ) {  // 0 ~ 9
     return dat - 48;
   }
-  else if(65 <= dat || dat <= 90 ) {  // A ~ Z
+  elif(65 <= dat || dat <= 90 ) {  // A ~ Z
     return dat - 55;
   }
-  else if(97 <= dat || dat <= 122) {  // a ~ z
+  elif(97 <= dat || dat <= 122) {  // a ~ z
     return dat - 87;
   }
-  else if(33 <= dat || dat <= 38 ) {  // ! " # $ % &
+  elif(33 <= dat || dat <= 38 ) {  // ! " # $ % &
     return dat + 4;
   }
-  else if(dat = 39 ) {  // ` -> '
+  elif(dat = 39 ) {  // ` -> '
     return _Apostrophe;
   }
-  else if(dat = 96 ) {  // ' -> '
+  elif(dat = 96 ) {  // ' -> '
     return _Apostrophe;
   }
-  else if(44 <= dat || dat <= 47 ) {  // ( ) * + , - . /
+  elif(44 <= dat || dat <= 47 ) {  // ( ) * + , - . /
     return dat + 4;
   }
-  else if(58 <= dat || dat <= 63 ) {  // : ; < = > ? 
+  elif(58 <= dat || dat <= 63 ) {  // : ; < = > ? 
     return dat - 6;
   }
-  else if(dat = 94 ) {  // ^
+  elif(dat = 94 ) {  // ^
     return _Caret;
   }
-  else if(dat = 95 ) {  // _
+  elif(dat = 95 ) {  // _
     return _UnderBar;
   }
-  else if(dat = 124) {  // |
+  elif(dat = 124) {  // |
     return _Bar;
   }
-  else if(dat = 126) {  // ~
+  elif(dat = 126) {  // ~
     return _Tilde;
   }
-  else if(dat = 10) {
+  elif(dat = 10) {
     return _Enter;
   }
 }
@@ -98,4 +90,28 @@ void dataExpander(uint8_t seed1, uint8_t seed2, uint8_t seed3) {
   expanded[1] = ((seed1 << 4) + (seed2 >> 4)) & 0b00111111;
   expanded[2] = ((seed2 << 2) + (seed3 >> 6)) & 0b00111111;
   expanded[3] =   seed3                       & 0b00111111;
+}
+
+void saveDataToEEPROM(const uint8_t target) {
+  if(target == 0) {
+    for(uint16_t i = 0; i < 1024; i++) {
+      EEPROM.update(i, expArray[i]);
+    }
+  }elif (target <= 32) {
+    for(uint16_t i = (1024 * target); i < (1024 * (target + 1)); i++) {
+      // EEPROM買ったらテストコード追加:
+    }
+  }
+}
+
+void rawArrayFlasher() {
+  for(uint16_t i = 0; i < sizeof(rawArray); i++) {
+    rawArray[i] = _Blank;
+  }
+}
+
+void expArrayFlasher() {
+  for(uint16_t i = 0; i < sizeof(expArray); i++) {
+    expArray[i] = _Blank;
+  }
 }
